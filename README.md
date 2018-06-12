@@ -1,0 +1,1 @@
+Kickstart file with python scripts to auto deploy centos and join to ad domain.
