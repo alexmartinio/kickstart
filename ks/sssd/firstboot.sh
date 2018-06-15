@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/usr/bin/curl --silent "http://repos.redarrow.co.uk/ks/sssd/join-domain.py" | /usr/bin/python
+/usr/bin/curl --silent "http://repos.alexmartin.io/ks/sssd/join-domain.py" | /usr/bin/python
 
 /bin/cat /etc/crontab | /bin/grep -v firstboot > /etc/crontab.tmp
 /bin/rm -f /etc/crontab

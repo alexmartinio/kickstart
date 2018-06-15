@@ -27,12 +27,12 @@ if os.path.exists(sysroot):
 # realmd setup
 #
 
-domain = "AD.RedArrow.co.uk"
-ou = "OU=Linux,OU=Servers,OU=Resources,DC=AD,DC=RedArrow,DC=co,DC=uk"
-principal = "HOST/LinuxADJoin@AD.REDARROW.CO.UK"
-keytaburl = "http://repos.redarrow.co.uk/ks/sssd/domainjoin.keytab"
+domain = "ad.alexmartin.io"
+ou = "OU=Linux,OU=Servers,OU=Resources,DC=AD,DC=ad,DC=alexmartin,DC=io"
+principal = "HOST/LinuxADJoin@AD.ALEXMARTIN.IO"
+keytaburl = "http://repos.alexmartio.co.uk/ks/sssd/domainjoin.keytab"
 fqdn = socket.getfqdn().lower()
-hostspn = "host/{}@AD.REDARROW.CO.UK".format(fqdn)
+hostspn = "host/{}@AD.ALEXMARTIN.IO".format(fqdn)
 keytab = os.path.join(tempfile.mkdtemp(), "domainjoin.keytab")
 
 print('')
@@ -104,10 +104,10 @@ contents = """
 [sssd]
 services = nss, pam, sudo
 
-[domain/AD.RedArrow.co.uk]
+[domain/ad.alexmartin.io]
 use_fully_qualified_names = False
 fallback_homedir = /home/%u
-ldap_sudo_search_base = OU=Sudoers,OU=Systems,OU=Groups,OU=Resources,DC=AD,DC=RedArrow,DC=co,DC=uk
+ldap_sudo_search_base = OU=Sudoers,OU=Systems,OU=Groups,OU=Resources,DC=AD,DC=ad,DC=alexmartin,DC=io
 ad_site = Romsey
 """
 
