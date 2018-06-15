@@ -11,7 +11,7 @@ echo -e "\e[1m\e[101m** Please note, by continuing the local disk WILL be wiped!
 echo
 echo -n "Enter the server hostname : "
 read NAME
-DOMAIN="ad.alexmartio.co.uk"
+DOMAIN="ad.alexmartin.io"
 NAME="$NAME.$DOMAIN"
 echo $NAME > /tmp/hostname.tmp
 sleep 1
@@ -21,12 +21,12 @@ echo "network  --hostname=$NAME" >> /tmp/networkhost.txt
 # System authorization information
 auth --enableshadow --passalgo=sha512
 # Use network installation media
-url --url 'http://repos.alexmartio.co.uk/centos/7/os/x86_64'
+url --url 'http://repos.alexmartin.io/centos/7/os/x86_64'
 
 #epel repo
-repo --name=epel --baseurl='http://repos.alexmartio.co.uk/pub/epel/7/x86_64/'
+repo --name=epel --baseurl='http://repos.alexmartin.io/pub/epel/7/x86_64/'
 #updates repo
-repo --name=updates --baseurl='http://repos.alexmartio.co.uk/centos/7/updates/x86_64/'
+repo --name=updates --baseurl='http://repos.alexmartin.io/centos/7/updates/x86_64/'
 
 # Use text install
 text
@@ -112,13 +112,13 @@ yum-cron
 # Post-installation scripts
 %post
 
-sed -i 's/#baseurl=http:\/\/mirror.centos.org/baseurl=http:\/\/repos.alexmartio.co.uk/' /etc/yum.repos.d/CentOS-Base.repo
-sed -i 's/#baseurl=http:\/\/download.fedoraproject.org/baseurl=http:\/\/repos.alexmartio.co.uk/' /etc/yum.repos.d/epel.repo
+sed -i 's/#baseurl=http:\/\/mirror.centos.org/baseurl=http:\/\/repos.alexmartin.io/' /etc/yum.repos.d/CentOS-Base.repo
+sed -i 's/#baseurl=http:\/\/download.fedoraproject.org/baseurl=http:\/\/repos.alexmartin.io/' /etc/yum.repos.d/epel.repo
 sed -i 's/mirrorlist/#mirrorlist/' /etc/yum.repos.d/{CentOS-Base,epel}.repo
 
 ## Add Vim customisations
-curl --create-dirs 'http://repos.alexmartio.co.uk/ks/vim/.vimrc' -o /tmp/vim/.vimrc
-curl --create-dirs 'http://repos.alexmartio.co.uk/ks/vim/.vim/colors/Crystallite.vim' -o /tmp/vim/.vim/colors/Crystallite.vim
+curl --create-dirs 'http://repos.alexmartin.io/ks/vim/.vimrc' -o /tmp/vim/.vimrc
+curl --create-dirs 'http://repos.alexmartin.io/ks/vim/.vim/colors/Crystallite.vim' -o /tmp/vim/.vim/colors/Crystallite.vim
 cp --recursive /tmp/vim/{.vimrc,.vim} /root
 cp --recursive /tmp/vim/{.vimrc,.vim} /etc/skel
 rm --force --recursive /tmp/vim
@@ -127,7 +127,7 @@ restorecon -R /root
 restorecon -R /etc/skel
 
 # Configure SSSD - this has to be done on first boot, as systemd is not available in chroot
-/bin/curl --silent "http://repos.alexmartio.co.uk/ks/sssd/firstboot.sh" -o /root/firstboot.sh
+/bin/curl --silent "http://repos.alexmartin.io/ks/sssd/firstboot.sh" -o /root/firstboot.sh
 echo "@reboot root /bin/sleep 60; /bin/bash /root/firstboot.sh > /root/firstboot.log 2>&1" >> /etc/crontab
 
 # Initialise AIDE database
